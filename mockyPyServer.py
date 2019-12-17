@@ -7,9 +7,9 @@ app = Flask(__name__)
 def hello():
     resp = """
     {
-     "name": "%s",
-     "instructions": "%s",
-     "teste": "%s"
+        "name": "%s",
+        "instructions": "%s",
+        "teste": "%s"
     }
     """
     resp = resp % ('José da Silva', 'superior', 'ok')
@@ -20,9 +20,9 @@ def hello():
 def id(id):
     resp = """
     {
-     "id": "%s",
-     "name": "%s",
-     "detail": "%s"
+        "id": "%s",
+        "name": "%s",
+        "detail": "%s"
     }
     """
     resp = resp % (id, 'MaLu', 'color hair')
@@ -33,12 +33,11 @@ def id(id):
 def search():
     user = request.args.get('user')
     name = request.args.get('name')
-
     resp = """
     {
-     "id": "%s",
-     "user": "%s",
-     "name": "%s"
+        "id": "%s",
+        "user": "%s",
+        "name": "%s"
     }
     """
     resp = resp % ('112233', user, name)
@@ -47,10 +46,9 @@ def search():
 #POST simples
 @app.route('/newid',methods = ['POST'])
 def newid():
-
-        req = request.json        
-        resp = """
-        {
+    req = request.json        
+    resp = """
+    {
         "id": "%s",
         "name": "%s",
         "detail":{
@@ -58,10 +56,10 @@ def newid():
                 "hobby": "%s"
             }
         "message": "%s"
-        }
-        """
-        resp = resp % (req['id'], req['name'], req['detail']['job'], req['detail']['hobby'], 'Salvo com Sucesso!!!')
-        return resp, 201, {'Content-Type': 'application/json; charset=utf-8'}
+    }
+    """
+    resp = resp % (req['id'], req['name'], req['detail']['job'], req['detail']['hobby'], 'Salvo com Sucesso!!!')
+    return resp, 201, {'Content-Type': 'application/json; charset=utf-8'}
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=8080, debug = True)
