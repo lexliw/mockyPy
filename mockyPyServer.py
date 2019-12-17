@@ -46,7 +46,14 @@ def search():
 #POST simples
 @app.route('/newid',methods = ['POST'])
 def newid():
-    req = request.json        
+    req = request.json
+
+    id = req['id']
+    name = req['name']
+    job = req['detail']['job']
+    hobby = req['detail']['hobby']
+    message = 'Salvo com Sucesso!!!'
+
     resp = """
     {
         "id": "%s",
@@ -58,7 +65,7 @@ def newid():
         "message": "%s"
     }
     """
-    resp = resp % (req['id'], req['name'], req['detail']['job'], req['detail']['hobby'], 'Salvo com Sucesso!!!')
+    resp = resp % (id, name, job, hobby, message)
     return resp, 201, {'Content-Type': 'application/json; charset=utf-8'}
 
 if __name__ == '__main__':
